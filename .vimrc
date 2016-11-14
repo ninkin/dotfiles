@@ -7,11 +7,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'benmills/vimux'
 
 Plugin 'flazz/vim-colorschemes'
 
@@ -20,6 +22,8 @@ call vundle#end()
 
 
 "edit
+set encoding=utf-8
+
 "tabs
 filetype plugin indent on
 
@@ -62,8 +66,6 @@ set mat=2
 
 syntax on
 
-set encoding=utf8
-
 set ttyfast
 
 set background=dark
@@ -72,7 +74,6 @@ colorscheme molokai
 set number
 
 
-set laststatus=2
 
 
 "neredtree
@@ -101,6 +102,16 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_cpp_remove_include_errors = 1
 
+"vim-airline
+set t_Co=256
+set laststatus=2
+let g:airline_detect_paste=1
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 1
+
 
 "youcompleteme
 "
@@ -111,3 +122,6 @@ nnoremap <leader>gg :YcmCompleter GoToImprecise<CR>
 nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>p :YcmCompleter GetParent<CR>
+
+"vimux
+map <Leader>vp :VimuxPromptCommand<CR>
