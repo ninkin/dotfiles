@@ -11,9 +11,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'benmills/vimux'
+Plugin 'majutsushi/tagbar'
 
 Plugin 'flazz/vim-colorschemes'
 
@@ -125,3 +125,6 @@ nnoremap <leader>p :YcmCompleter GetParent<CR>
 
 "vimux
 map <Leader>vp :VimuxPromptCommand<CR>
+
+"tagbar
+nmap <F8> :TagbarToggle<CR>
