@@ -14,6 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'benmills/vimux'
 Plugin 'majutsushi/tagbar'
+Plugin 'nvie/vim-flake8'
 
 Plugin 'flazz/vim-colorschemes'
 
