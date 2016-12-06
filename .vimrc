@@ -66,6 +66,9 @@ set showmatch
 set mat=2
 
 syntax on
+au BufNewFile,BufRead */newt/*.py set filetype=newt
+au BufNewFile,BufRead */nutest/testscripts/*.py set filetype=newt
+au FileType newt syntax sync fromstart
 
 set ttyfast
 
@@ -127,6 +130,7 @@ nnoremap <leader>p :YcmCompleter GetParent<CR>
 
 "vimux
 map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vm :VimuxPromptCommand("hdbcc hm b -b Optimized -j 500 all_core")<CR>
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>

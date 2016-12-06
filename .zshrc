@@ -78,5 +78,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
 alias tmux='tmux -2'
 
+# happy make (installed on 2016-11-18 12:03:59.553156)
+source /home/i332179/.HappyMake/etc/hminit.sh
