@@ -15,6 +15,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'benmills/vimux'
 Plugin 'majutsushi/tagbar'
 Plugin 'nvie/vim-flake8'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
 
 Plugin 'flazz/vim-colorschemes'
 
@@ -84,6 +87,8 @@ set number
 
 let g:NERDTreeQuitOnOpen=0
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=40
+
 
 nmap <silent> <leader>n :NERDTreeToggle<cr>
 nmap <silent> <leader>y :NERDTreeFind<cr>
@@ -125,6 +130,7 @@ let g:ycm_confirm_extra_conf = 0
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>gg :YcmCompleter GoToImprecise<CR>
 nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>p :YcmCompleter GetParent<CR>
 
