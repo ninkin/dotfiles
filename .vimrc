@@ -18,6 +18,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'flazz/vim-colorschemes'
 
@@ -140,3 +141,9 @@ map <Leader>vm :VimuxPromptCommand("hdbcc hm b -b Optimized -j 500 all_core")<CR
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
+
+set mouse=
+"nvim
+if has("nvim")
+    :tnoremap <Esc> <C-\><C-n>
+endif
