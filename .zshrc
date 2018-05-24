@@ -83,24 +83,20 @@ alias tmux='tmux -2'
 alias checkbot-whitespaces='python tools/checkbot/run_checkbot.py --commit HEAD --check CheckTrailingWhitespaces --repair-changed-lines'
 alias checkbot='python tools/checkbot/run_checkbot.py --commit HEAD'
 alias gll="git log --no-merges --pretty=format:\"%h%x09%<(20)%an%s\""
+alias clion="/home/i332179/bin/clion/bin/clion.sh &"
+alias kclion="kill $(ps aux | egrep '[j]ava.*clion' | awk '{print $2}')"
 
-# Change according to your environment
-SRC_DIR="/home/i332179/b01"
-BIN_DIR="$SRC_DIR/build/Optimized/gen"
-INST_DIR="/usr/sap/BO1/HDB01"
-HOSTNAME="selibm133"
- 
-uniquify() { echo "$1" | awk -v RS=':' -v ORS=":" '!a[$1]++ { if (NR > 1) printf ORS; printf $a[$1] }'; }
-export DIR_INSTANCE="$INST_DIR"
-export SAP_RETRIEVAL_PATH="$DIR_INSTANCE/$HOSTNAME"
-export DIR_EXECUTABLE="$DIR_INSTANCE/exe"
-export SECUDIR="$SAP_RETRIEVAL_PATH/sec"
-export PYTHONPATH=$(uniquify "$BIN_DIR:$BIN_DIR/python_support:$SRC_DIR/python-api/python:$SRC_DIR/nutest/lib:$SRC_DIR/Interfaces/PythonDBAPI:$PYTHONPATH")
-export LD_LIBRARY_PATH=$(uniquify "$BIN_DIR:$BIN_DIR/test/gmock/:$LD_LIBRARY_PATH")
+export PATH="$HOME/.local/bin:/usr/local/hdbcc/opt/linux:/home/i332179/.pyenv/bin:$HOME/.cargo/bin:$PATH"
 
-# happy make (installed on 2017-02-27 17:58:57.424559)
-source /home/i332179/.HappyMake/etc/hminit.sh
-export PATH="/home/i332179/.linuxbrew/bin:$PATH"
-export MANPATH="/home/i332179/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/i332179/.linuxbrew/share/info:$INFOPATH"
+# happy make (installed on 2017-05-11 18:54:52.432137)
+source /INT1/i332179/.HappyMake/etc/hminit.sh
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+#jenkins WDF to SEL
+cpsel() {
+    curl -X POST "http://hdbjenkins.icnl.sap.corp:8081/job/PUBLIC%20-%20File%20copy%20service%20for%20area51%20(WDF%20to%20SEL)/buildWithParameters?PATH2SYNC=$1"
+}
 

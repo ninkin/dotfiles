@@ -1,36 +1,62 @@
-filetype off
+"nvim
+if has("nvim")
+    call plug#begin()
 
-set rtp+=~/.vim/bundle/Vundle.vim
+    Plug 'kien/ctrlp.vim', {'for': ['cpp', 'c', 'h', 'cc']}
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/syntastic', {'for': ['cpp', 'c', 'h', 'cc']}
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'for': ['cpp', 'c', 'h', 'cc']}
+    Plug 'benmills/vimux'
+    Plug 'majutsushi/tagbar', {'for': ['cpp', 'c', 'h', 'cc']}
+    Plug 'nvie/vim-flake8'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'tpope/vim-surround'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'rust-lang/rust.vim'
+    Plug 'flazz/vim-colorschemes'
 
-call vundle#begin()
+    call plug#end()
+    :tnoremap <Esc> <C-\><C-n>
+else
+    set nocompatible
+    filetype off
+    set rtp+=~/.vim/bundle/Vundle.vim
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'benmills/vimux'
-Plugin 'majutsushi/tagbar'
-Plugin 'nvie/vim-flake8'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
+    call vundle#begin()
 
-Plugin 'flazz/vim-colorschemes'
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-unimpaired'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'benmills/vimux'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'nvie/vim-flake8'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'easymotion/vim-easymotion'
+    Plugin 'tpope/vim-surround'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'rust-lang/rust.vim'
+    Plugin 'flazz/vim-colorschemes'
 
+    call vundle#end()
 
-call vundle#end()
+    filetype plugin indent on
+    syntax on
+endif
 
 
 "edit
 set encoding=utf-8
-
-"tabs
-filetype plugin indent on
 
 set autoread
 
@@ -69,7 +95,6 @@ set magic
 set showmatch
 set mat=2
 
-syntax on
 au BufNewFile,BufRead */newt/*.py set filetype=newt
 au BufNewFile,BufRead */nutest/testscripts/*.py set filetype=newt
 au FileType newt syntax sync fromstart
@@ -98,6 +123,7 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 
 let g:ctrlp_custom_ignore = {'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$', 'file': '\.exe$\|\.so$'}
 nmap <silent> <leader>r :CtrlPBuffer<cr>
+let g:ctrlp_working_path_mode = 'ra'
 
 "syntastic
 
@@ -111,6 +137,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["yacc"] }
 
 "vim-airline
 set t_Co=256
@@ -137,13 +164,23 @@ nnoremap <leader>p :YcmCompleter GetParent<CR>
 
 "vimux
 map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vm :VimuxPromptCommand("hdbcc hm b -b Optimized -j 500 all_core")<CR>
+map <Leader>vv :VimuxPromptCommand("hdbcc hm b -b opt -j 500 all_core")<CR>
+map <Leader>va :VimuxPromptCommand("hdbcc hm b -b opt -j 500 all")<CR>
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
 
-set mouse=
-"nvim
-if has("nvim")
-    :tnoremap <Esc> <C-\><C-n>
-endif
+"easymotion
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\t\+/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * match ExtraWhitespace /\t\+/
+autocmd BufWinLeave * call clearmatches()
