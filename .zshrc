@@ -80,23 +80,19 @@ source $ZSH/oh-my-zsh.sh
 #
 
 alias tmux='tmux -2'
-alias checkbot-whitespaces='python tools/checkbot/run_checkbot.py --commit HEAD --check CheckTrailingWhitespaces --repair-changed-lines'
-alias checkbot='python tools/checkbot/run_checkbot.py --commit HEAD'
-alias gll="git log --no-merges --pretty=format:\"%h%x09%<(20)%an%s\""
-alias clion="/home/i332179/bin/clion/bin/clion.sh &"
-alias kclion="kill $(ps aux | egrep '[j]ava.*clion' | awk '{print $2}')"
 
-export PATH="$HOME/.local/bin:/usr/local/hdbcc/opt/linux:/home/i332179/.pyenv/bin:$HOME/.cargo/bin:$PATH"
-
-# happy make (installed on 2017-05-11 18:54:52.432137)
-source /INT1/i332179/.HappyMake/etc/hminit.sh
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-
-#jenkins WDF to SEL
-cpsel() {
-    curl -X POST "http://hdbjenkins.icnl.sap.corp:8081/job/PUBLIC%20-%20File%20copy%20service%20for%20area51%20(WDF%20to%20SEL)/buildWithParameters?PATH2SYNC=$1"
-}
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ninkin/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ninkin/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ninkin/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ninkin/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
